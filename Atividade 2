@@ -1,0 +1,75 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string[] vendedores =
+        {
+            "Ana",
+            "João",
+            "Carlos",
+            "Maria",
+            "Pedro"
+        };
+
+        double[] vendas =
+        {
+            9, 4, 8, 3, 7
+        };
+
+        double[] faturamento =
+        {
+            8, 5, 9, 4, 8
+        };
+
+        double[] novosClientes =
+        {
+            7, 3, 8, 2, 6
+        };
+
+        double w1 = 0.10;
+        double w2 = 0.7;
+        double w3 = 0.3;
+
+        double limiar = 6;
+
+        int altaPerformance = 0;
+        int baixaPerformance = 0;
+
+        for (int i = 0; i < vendedores.Length; i++)
+        {
+            double z =
+                (vendas[i] * w1) +
+                (faturamento[i] * w2) +
+                (novosClientes[i] * w3);
+
+            int classe;
+
+            if (z >= limiar)
+            {
+                classe = 1;
+                altaPerformance++;
+            }
+            else
+            {
+                classe = 0;
+                baixaPerformance++;
+            }
+
+            Console.WriteLine(
+                $"{vendedores[i]} | Pontuação: {z:F2} | Classe: {classe}"
+            );
+        }
+
+        Console.WriteLine();
+
+        Console.WriteLine(
+            $"Alta performance: {altaPerformance}"
+        );
+
+        Console.WriteLine(
+            $"Não atingiram alta performance: {baixaPerformance}"
+        );
+    }
+}
