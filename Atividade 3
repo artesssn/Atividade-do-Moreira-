@@ -1,0 +1,56 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int[] compras =
+        {
+            1, 2, 3, 4, 5
+        };
+
+        double[] valor =
+        {
+            9, 3, 8, 2, 7
+        };
+
+        double[] frequencia =
+        {
+            8, 2, 7, 3, 6
+        };
+
+        double[] produtos =
+        {
+            7, 2, 6, 1, 5
+        };
+
+        double w1 = 0.5;
+        double w2 = 0.3;
+        double w3 = 0.2;
+
+        double limiar = 6;
+
+        for (int i = 0; i < compras.Length; i++)
+        {
+            double z =
+                (valor[i] * w1) +
+                (frequencia[i] * w2) +
+                (produtos[i] * w3);
+
+            int classe;
+
+            if (z >= limiar)
+            {
+                classe = 1;
+            }
+            else
+            {
+                classe = 0;
+            }
+
+            Console.WriteLine(
+                $"Compra {compras[i]} | Pontuação: {z:F2} | Classe: {classe}"
+            );
+        }
+    }
+}
