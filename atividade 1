@@ -1,0 +1,63 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        string[] clientes =
+        {
+            "Joaozinho","Pedrinho","Tharso","Bernini","Cleid"
+        };
+
+        double[] renda = { 8, 4, 7, 3, 6 };
+        double[] score = { 9, 5, 8, 4, 7 };
+        double[] comprometimento = { 2, 8, 3, 9, 4 };
+
+        double w1 = 0.5;
+        double w2 = 0.4;
+        double w3 = -0.3;
+
+        double limiar = 5;
+
+        int[] classes = new int[clientes.Length];
+
+        int preAprovados = 0;
+        int naoPreAprovados = 0;
+
+        for (int i = 0; i < clientes.Length; i++)
+        {
+            double z =
+                (renda[i] * w1) +
+                (score[i] * w2) +
+                (comprometimento[i] * w3);
+
+            if (z >= limiar)
+            {
+                classes[i] = 1;
+                preAprovados++;
+            }
+            else
+            {
+                classes[i] = 0;
+                naoPreAprovados++;
+            }
+
+            Console.WriteLine(
+                $"{clientes[i]} | Pontuação: {z:F2} | Classe: {classes[i]}"
+            );
+        }
+
+        double percentualAprovados =
+            (double)preAprovados / clientes.Length * 100;
+
+        double percentualNaoAprovados =
+            (double)naoPreAprovados / clientes.Length * 100;
+
+        Console.WriteLine();
+
+        Console.WriteLine($"Pré-aprovados: {preAprovados}");
+        Console.WriteLine($"Não pré-aprovados: {naoPreAprovados}");
+
+        Console.WriteLine();
+    }
+}
